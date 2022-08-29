@@ -28,8 +28,8 @@ namespace game {
       MediaPlayer.Play(song);
     }
 
-    public static void Play(Sound sound) {
-      soundEffects[(int)sound].Play();
+    public static void Play(Sound sound, float volume = 1f) {
+      soundEffects[(int)sound].Play(volume, 0f, 0f);
     }
   }
 }

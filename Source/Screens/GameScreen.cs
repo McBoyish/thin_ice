@@ -58,7 +58,7 @@ namespace game {
     }
 
     public override void Initialize() {
-      currentLevel = 1;
+      currentLevel = 1
       maxLevel = 13; // CHANGE WHEN ADDING NEW LEVELS
       solvedCount = 0;
       iceBrokenCount = 0;

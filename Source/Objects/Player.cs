@@ -79,6 +79,11 @@ namespace game {
       HasWon = true;
     }
 
+    public void Teleport(Vector2 pos) {
+      SoundManager.Play(Sound.TELEPORT, 0.75f);
+      Position = pos;
+    }
+
     private void Blink() {
       PlayOnce("blink", 20);
     }

@@ -31,7 +31,7 @@ namespace game {
     }
 
     public void Teleport(Vector2 pos) {
-      SoundManager.Play(Sound.TELEPORT);
+      SoundManager.Play(Sound.TELEPORT, 0.75f);
       Position = pos;
       MovePosition = pos + MoveDirection * Screen.tileSize;
     }

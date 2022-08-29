@@ -41,15 +41,13 @@ namespace game {
       var playerPos = player.Position;
 
       if (playerPos == T1.Position) {
-        SoundManager.Play(Sound.TELEPORT);
-        player.Position = T2.Position;
+        player.Teleport(T2.Position);
         DisableTeleporters();
         return;
       }
 
       if (playerPos == T2.Position) {
-        SoundManager.Play(Sound.TELEPORT);
-        player.Position = T1.Position;
+        player.Teleport(T1.Position);
         DisableTeleporters();
         return;
       }
