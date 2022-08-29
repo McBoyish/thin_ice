@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace game {
   public class GameScreen : Screen {
+    private const int maxLevel = 13;
     private SpriteFont font;
     private LevelResource resource;
 
@@ -14,7 +15,6 @@ namespace game {
     private Text resetText;
 
     private Level level;
-    private int maxLevel;
     private int iceCount;
     private int iceBrokenCount;
     private int currentLevel;
@@ -58,8 +58,7 @@ namespace game {
     }
 
     public override void Initialize() {
-      currentLevel = 1
-      maxLevel = 13; // CHANGE WHEN ADDING NEW LEVELS
+      currentLevel = 1;
       solvedCount = 0;
       iceBrokenCount = 0;
       scoreCount = 0;
