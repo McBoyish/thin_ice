@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace game {
   public class GameScreen : Screen {
-    private const int maxLevel = 13;
+    private const int maxLevel = 19;
     private SpriteFont font;
     private LevelResource resource;
 
@@ -20,6 +21,10 @@ namespace game {
     private int currentLevel;
     private int solvedCount;
     private int scoreCount;
+
+    private int scoreDisplay;
+    private int scoreBuffer;
+    private const int scoreStep = 3;
 
     public int IceBrokenCount {
       get { return iceBrokenCount; }
@@ -48,6 +53,15 @@ namespace game {
       }
     }
 
+    public int ScoreDisplay {
+      get { return scoreDisplay; }
+      set {
+        scoreDisplay = value;
+        scoreText.TextString = GetScoreText();
+        scoreText.Position = new Vector2(width - tileSize - solvedText.Size.X, height - tileSize + (tileSize / 2 - scoreText.Size.Y / 2));
+      }
+    }
+
     public int ScoreCount {
       get { return scoreCount; }
       set {
@@ -58,10 +72,12 @@ namespace game {
     }
 
     public override void Initialize() {
-      currentLevel = 1;
+      currentLevel = 5;
       solvedCount = 0;
       iceBrokenCount = 0;
       scoreCount = 0;
+      scoreDisplay = 0;
+      scoreBuffer = 0;
     }
 
     public override void LoadContent(ContentManager c) {
@@ -90,6 +106,12 @@ namespace game {
       solvedText.Draw(spriteBatch);
       resetText.Draw(spriteBatch);
       scoreText.Draw(spriteBatch);
+
+      if (scoreBuffer > 0) {
+        var step = Math.Min(scoreStep, scoreBuffer);
+        ScoreDisplay += step;
+        scoreBuffer -= step;
+      }
     }
 
     public override void Update(GameTime gameTime) {
@@ -100,6 +122,7 @@ namespace game {
     private void OnScoreIncreased(int amount) {
       ScoreCount += amount;
       level.ScoreCount += amount;
+      scoreBuffer += amount;
     }
 
     private void OnIceBroken() {
@@ -113,12 +136,14 @@ namespace game {
 
     private void ResetLevel() {
       ScoreCount -= level.ScoreCount;
+      ScoreDisplay = ScoreCount;
       GenerateLevel(currentLevel);
     }
 
     private void NextLevel() {
       CurrentLevel++;
       SolvedCount++;
+      OnScoreIncreased(100);
       if (CurrentLevel > maxLevel) {
         ScreenManager.AddScreen(new ResultScreen(ScoreCount));
       } else {
@@ -154,7 +179,7 @@ namespace game {
     }
 
     private string GetScoreText() {
-      return "SCORE " + ScoreCount;
+      return "SCORE " + scoreDisplay;
     }
   }
 }

@@ -357,6 +357,24 @@
 #begin levels/level13.txt
 /copy:levels/level13.txt
 
+#begin levels/level14.txt
+/copy:levels/level14.txt
+
+#begin levels/level15.txt
+/copy:levels/level15.txt
+
+#begin levels/level16.txt
+/copy:levels/level16.txt
+
+#begin levels/level17.txt
+/copy:levels/level17.txt
+
+#begin levels/level18.txt
+/copy:levels/level18.txt
+
+#begin levels/level19.txt
+/copy:levels/level19.txt
+
 #begin levels/level2.txt
 /copy:levels/level2.txt
 
