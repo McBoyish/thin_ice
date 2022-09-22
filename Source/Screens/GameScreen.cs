@@ -20,7 +20,6 @@ namespace game {
     private int iceBrokenCount;
     private int currentLevel;
     private int solvedCount;
-    private int scoreCount;
 
     private int scoreDisplay;
     private int scoreBuffer;
@@ -58,24 +57,16 @@ namespace game {
       set {
         scoreDisplay = value;
         scoreText.TextString = GetScoreText();
-        scoreText.Position = new Vector2(width - tileSize - solvedText.Size.X, height - tileSize + (tileSize / 2 - scoreText.Size.Y / 2));
+        scoreText.Position = new Vector2(width - tileSize - scoreText.Size.X, height - tileSize + (tileSize / 2 - scoreText.Size.Y / 2));
       }
     }
 
-    public int ScoreCount {
-      get { return scoreCount; }
-      set {
-        scoreCount = value;
-        scoreText.TextString = GetScoreText();
-        scoreText.Position = new Vector2(width - tileSize - solvedText.Size.X, height - tileSize + (tileSize / 2 - scoreText.Size.Y / 2));
-      }
-    }
+    public int ScoreCount { get; set; } = 0;
 
     public override void Initialize() {
-      currentLevel = 5;
+      currentLevel = 1;
       solvedCount = 0;
       iceBrokenCount = 0;
-      scoreCount = 0;
       scoreDisplay = 0;
       scoreBuffer = 0;
     }
@@ -163,7 +154,7 @@ namespace game {
       iceBrokenText.Position = new Vector2(width / 2 - iceBrokenText.Size.X / 2, tileSize / 2 - iceBrokenText.Size.Y / 2);
       solvedText.Position = new Vector2(width - tileSize - solvedText.Size.X, tileSize / 2 - solvedText.Size.Y / 2);
       resetText.Position = new Vector2(tileSize, height - tileSize + (tileSize / 2 - resetText.Size.Y / 2));
-      scoreText.Position = new Vector2(width - tileSize - solvedText.Size.X, height - tileSize + (tileSize / 2 - scoreText.Size.Y / 2));
+      scoreText.Position = new Vector2(width - tileSize - scoreText.Size.X, height - tileSize + (tileSize / 2 - scoreText.Size.Y / 2));
     }
 
     private string GetLevelText() {

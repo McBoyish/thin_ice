@@ -83,7 +83,7 @@ namespace game {
 
     public void PlayOnce(string animationName, int framesPerSecond = 0, Action onAnimationComplete = null) {
       if (spriteSheet == null) return;
-      if (isPlayingOnce) return;
+      if (isPlayingOnce && currentAnimation.Name == animationName) return;
       lastAnimationName = currentAnimation.Name;
       currentAnimation = spriteSheet.GetAnimation(animationName);
       currentIndex = 0;
